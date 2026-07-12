@@ -164,3 +164,38 @@ export const verifyPayment = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const updateOrderStatus = async (req, res) => {
+  try {
+    const { status } = req.body;
+
+    const validStatuses = ["Order Received", "In Kitchen", "Sent to Delivery"];
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({ message: "Invalid status value" });
+    }
+
+    const order = await Order.findById(req.params.id);
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+
+    order.orderStatus = status;
+    await order.save();
+
+    res.json({ message: "Order status updated", order });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const getAllOrders = async (req, res) => {
+  try {
+    const orders = await Order.find()
+      .populate("user", "name email")
+      .sort({ createdAt: -1 });
+
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
