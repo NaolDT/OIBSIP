@@ -12,6 +12,10 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import { BuilderProvider } from "./context/BuilderContext";
 import OrderTracking from "./pages/user/OrderTracking";
 import MyOrders from "./pages/user/MyOrders";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminInventory from "./pages/admin/AdminInventory";
+import AdminOrders from "./pages/admin/AdminOrders";
+import AdminRoute from "./routes/AdminRoute";
 function App() {
   return (
     <>
@@ -68,6 +72,25 @@ function App() {
     <ProtectedRoute>
       <MyOrders />
     </ProtectedRoute>
+  }
+/>
+<Route path="/admin/login" element={<AdminLogin />} />
+
+<Route
+  path="/admin/inventory"
+  element={
+    <AdminRoute>
+      <AdminInventory />
+    </AdminRoute>
+  }
+/>
+
+<Route
+  path="/admin/orders"
+  element={
+    <AdminRoute>
+      <AdminOrders />
+    </AdminRoute>
   }
 />
       </Routes>
