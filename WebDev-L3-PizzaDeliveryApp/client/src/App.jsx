@@ -10,7 +10,8 @@ import Builder from "./pages/user/Builder";
 import OrderSummary from "./pages/user/OrderSummary";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import { BuilderProvider } from "./context/BuilderContext";
-
+import OrderTracking from "./pages/user/OrderTracking";
+import MyOrders from "./pages/user/MyOrders";
 function App() {
   return (
     <>
@@ -52,6 +53,23 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+  path="/orders/:id"
+  element={
+    <ProtectedRoute>
+      <OrderTracking />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/my-orders"
+  element={
+    <ProtectedRoute>
+      <MyOrders />
+    </ProtectedRoute>
+  }
+/>
       </Routes>
     </>
   );
