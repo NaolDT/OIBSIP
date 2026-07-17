@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { BuilderProvider, useBuilder } from "../../context/BuilderContext";
+import { useBuilder } from "../../context/BuilderContext";
 import StepIndicator from "../../components/builder/StepIndicator";
 import StepBase from "./builder/StepBase";
 import StepSauce from "./builder/StepSauce";
@@ -7,7 +7,7 @@ import StepCheese from "./builder/StepCheese";
 import StepVegetables from "./builder/StepVegetables";
 import Button from "../../components/ui/Button";
 
-function BuilderContent() {
+function Builder() {
   const { step, selection, nextStep, prevStep } = useBuilder();
   const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ function BuilderContent() {
     1: !!selection.base,
     2: !!selection.sauce,
     3: !!selection.cheese,
-    4: true, 
+    4: true,
   }[step];
 
   const handleNext = () => {
@@ -48,14 +48,6 @@ function BuilderContent() {
         </div>
       </div>
     </div>
-  );
-}
-
-function Builder() {
-  return (
-    <BuilderProvider>
-      <BuilderContent />
-    </BuilderProvider>
   );
 }
 
