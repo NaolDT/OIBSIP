@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import User from "../models/User.js";
 import { generateJWT, generateRandomToken } from "../utils/generateToken.js";
 import { sendEmail } from "../utils/sendEmail.js";
+import { isValidEmail } from "../utils/validator.js";
 
 export const registerUser = async (req, res) => {
   try {
@@ -11,10 +12,15 @@ export const registerUser = async (req, res) => {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ message: "Email already registered" });
+    if (!isValidEmail(email)) {
+      return res.status(400).json({ message: "Please enter a valid email address" });
     }
+
+    if (password.length < 6) {
+      return res.status(400).json({ message: "Password must be at least 6 characters" });
+    }
+
+    const existingUser = await User.findOne({ email });
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const verificationToken = generateRandomToken();
