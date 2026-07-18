@@ -11,13 +11,22 @@ export const getAllPizzas = async (req, res) => {
 
 export const createPizza = async (req, res) => {
   try {
-    const { name, description, image, basePrice } = req.body;
+    const { name, description, image, basePrice, base, sauce, cheese, vegetables } = req.body;
 
-    if (!name || !basePrice) {
-      return res.status(400).json({ message: "Name and basePrice are required" });
+    if (!name || !basePrice || !base || !sauce || !cheese) {
+      return res.status(400).json({ message: "Name, basePrice, base, sauce, and cheese are required" });
     }
 
-    const pizza = await Pizza.create({ name, description, image, basePrice });
+    const pizza = await Pizza.create({
+      name,
+      description,
+      image,
+      basePrice,
+      base,
+      sauce,
+      cheese,
+      vegetables: vegetables || [],
+    });
     res.status(201).json(pizza);
   } catch (error) {
     res.status(500).json({ message: error.message });

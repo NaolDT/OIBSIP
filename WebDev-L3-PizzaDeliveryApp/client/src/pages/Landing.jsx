@@ -1,17 +1,17 @@
-import HeroCarousel from "../components/landing/HeroCarousel";
-import FeaturesSection from "../components/landing/FeaturesSection";
+import Hero from "../components/landing/Hero";
+import CategoryStrip from "../components/landing/CategoryStrip";
+import PopularPizzas from "../components/landing/PopularPizzas";
 import HowItWorks from "../components/landing/HowItWorks";
-import Testimonials from "../components/landing/Testimonials";
 import CTASection from "../components/landing/CTASection";
 import Footer from "../components/layout/Footer";
 
 function Landing() {
   return (
     <div className="bg-cream">
-      <HeroCarousel />
-      <FeaturesSection />
+      <Hero />
+      <CategoryStrip />
+      <PopularPizzas />
       <HowItWorks />
-      <Testimonials />
       <CTASection />
       <Footer />
     </div>

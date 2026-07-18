@@ -36,6 +36,15 @@ export function BuilderProvider({ children }) {
     setStep(1);
   };
 
+  const loadSelection = (newSelection, startStep = 1) => {
+    setSelection({
+      base: newSelection.base,
+      sauce: newSelection.sauce,
+      cheese: newSelection.cheese,
+      vegetables: [...newSelection.vegetables], 
+    });
+    setStep(startStep);
+  };
   return (
     <BuilderContext.Provider
       value={{
@@ -48,6 +57,7 @@ export function BuilderProvider({ children }) {
         nextStep,
         prevStep,
         resetBuilder,
+        loadSelection,
       }}
     >
       {children}

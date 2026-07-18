@@ -30,7 +30,9 @@ function App() {
   return (
     <>
       <Navbar />
+      <BuilderProvider>
       <Routes>
+        <Route path="/" element={<HomeRoute />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/verify/:token" element={<VerifyEmail />} />
@@ -50,9 +52,9 @@ function App() {
           path="/builder"
           element={
             <ProtectedRoute>
-              <BuilderProvider>
+             
                 <Builder />
-              </BuilderProvider>
+           
             </ProtectedRoute>
           }
         />
@@ -61,9 +63,9 @@ function App() {
           path="/order-summary"
           element={
             <ProtectedRoute>
-              <BuilderProvider>
+            
                 <OrderSummary />
-              </BuilderProvider>
+              
             </ProtectedRoute>
           }
         />
@@ -103,8 +105,9 @@ function App() {
     </AdminRoute>
   }
 />
-<Route path="/" element={<HomeRoute />} />
+
       </Routes>
+      </BuilderProvider>
     </>
   );
 }
