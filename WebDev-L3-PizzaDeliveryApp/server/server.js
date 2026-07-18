@@ -1,4 +1,6 @@
 import "dotenv/config";
+import dns from "dns";
+dns.setDefaultResultOrder("ipv4first");
 import express from "express";
 import cors from "cors";
 import connectDB from "./config/db.js";
@@ -7,6 +9,8 @@ import inventoryRoutes from "./routes/inventoryRoutes.js";
 import pizzaRoutes from "./routes/pizzaRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import { startLowStockCron } from "./jobs/lowStockCron.js";
+import "dotenv/config";
+
 
 connectDB();
 startLowStockCron();
