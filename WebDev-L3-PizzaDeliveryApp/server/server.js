@@ -6,7 +6,9 @@ import authRoutes from "./routes/authRoutes.js";
 import inventoryRoutes from "./routes/inventoryRoutes.js";
 import pizzaRoutes from "./routes/pizzaRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
+import { startLowStockCron } from "./jobs/lowStockCron.js";
 connectDB();
+startLowStockCron();
 
 const app = express();
 
