@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route,Navigate } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
@@ -16,6 +16,16 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import AdminInventory from "./pages/admin/AdminInventory";
 import AdminOrders from "./pages/admin/AdminOrders";
 import AdminRoute from "./routes/AdminRoute";
+import Landing from "./pages/Landing";
+import { useAuth } from "./context/AuthContext";
+
+function HomeRoute() {
+  const { user } = useAuth();
+  if (user) {
+    return <Navigate to={user.role === "admin" ? "/admin/inventory" : "/dashboard"} replace />;
+  }
+  return <Landing />;
+}
 function App() {
   return (
     <>
@@ -93,6 +103,7 @@ function App() {
     </AdminRoute>
   }
 />
+<Route path="/" element={<HomeRoute />} />
       </Routes>
     </>
   );
