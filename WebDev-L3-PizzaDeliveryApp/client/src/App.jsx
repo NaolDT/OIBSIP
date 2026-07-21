@@ -18,6 +18,7 @@ import AdminOrders from "./pages/admin/AdminOrders";
 import AdminRoute from "./routes/AdminRoute";
 import Landing from "./pages/Landing";
 import { useAuth } from "./context/AuthContext";
+import NotFound from "./pages/NotFound";
 
 function HomeRoute() {
   const { user } = useAuth();
@@ -104,7 +105,7 @@ function App() {
     </AdminRoute>
   }
 />
-
+<Route path="*" element={<NotFound />} />
       </Routes>
       </BuilderProvider>
     </>
