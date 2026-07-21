@@ -77,7 +77,6 @@ function App() {
     </ProtectedRoute>
   }
 />
-
 <Route
   path="/my-orders"
   element={
